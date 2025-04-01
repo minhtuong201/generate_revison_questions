@@ -36,8 +36,8 @@ An interactive AI-powered chatbot that helps students learn through conversation
 
 ### 1. Clone & Setup
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/minhtuong201/generate_revison_questions.git
+cd generate_revison_questions
 python -m venv venv
 source venv/bin/activate   # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
