@@ -51,11 +51,12 @@ OPENAI_API_KEY=your-openai-key
 MODEL_NAME=gpt-4o-mini
 FLASK_SECRET_KEY=your-secret-key
 DEBUG=True
-REVISION_QUESTIONS_N=5
-REVISION_QUESTIONS_O=2
-MAX_REVISION_QUESTIONS=10
-MAX_ADDED_QUESTIONS=2
-RELEVANCE_THRESHOLD=-10
+REVISION_QUESTIONS_N=5 # Generate after every N questions
+REVISION_QUESTIONS_O=2 # Overlap factor
+MAX_REVISION_QUESTIONS=10 # Maximum revision question list limit
+MAX_ADDED_QUESTIONS=2 # Maximum added revision questions (each time generate)
+RELEVANCE_THRESHOLD=-10 # Minimum similarity score (not use any more)
+CHAT_HISTORY=5 # Maximum chat history size
 ```
 
 ---

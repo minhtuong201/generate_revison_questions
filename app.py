@@ -19,6 +19,7 @@ N = int(os.getenv("REVISION_QUESTIONS_N", 5))  # Generate after every N question
 O = int(os.getenv("REVISION_QUESTIONS_O", 2))   # Overlap factor
 MAX_REVISION_QUESTIONS = int(os.getenv("MAX_REVISION_QUESTIONS", 10))  # Maximum number of revision questions
 MAX_ADDED_QUESTIONS = int(os.getenv("MAX_ADDED_QUESTIONS", 2))  # Maximum added revision questions (each time generate)
+CHAT_HISTORY = int(os.getenv("CHAT_HISTORY", 5))  # Maximum chat history size
 
 # Load environment variables from .env file
 load_dotenv()
@@ -185,7 +186,7 @@ def send_message():
         revision_questions[session_key] = []
     
     # FIFO implementation for 5 Q&A limit: If already at 5 pairs (10 messages), remove oldest pair
-    if len(chat_history[session_key]) >= 10:  # 5 pairs of messages
+    if len(chat_history[session_key]) >= CHAT_HISTORY * 2:  # 5 pairs of messages
         # Remove the oldest Q&A pair (first user message and first AI response)
         chat_history[session_key].pop(0)  # Remove oldest user message
         chat_history[session_key].pop(0)  # Remove oldest AI response
