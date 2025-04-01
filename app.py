@@ -368,12 +368,14 @@ def generate_ai_stream(user_message, course_id, session_key):
                 generate_revision_questions(session_key)
             
             # Signal the end of the stream and send any additional data
-            yield f"data: {json.dumps({
-                'end': True, 
+            data = {
+                'end': True,
                 'question_count': question_counts[session_key],
                 'generate_revisions': generate_revisions,
                 'next_revision_at': next_revision_at
-            })}\n\n"
+            }
+            yield f"data: {json.dumps(data)}\n\n"
+
         
     except Exception as e:
         print("Error in streaming response:", str(e))
