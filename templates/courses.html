@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning App - Course Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="course-selection-container">
+        <header class="app-header">
+            <h1>Learning App</h1>
+            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        </header>
+        
+        <h2>Select a Course</h2>
+        
+        <div class="courses-grid">
+            {% for course in courses %}
+                <div class="course-card" onclick="window.location.href='{{ url_for('chat', course_id=course.id) }}'">
+                    <h3>{{ course.title }}</h3>
+                    <p>{{ course.description }}</p>
+                    <button class="select-button">Start Learning</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

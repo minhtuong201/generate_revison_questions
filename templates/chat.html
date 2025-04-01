@@ -1,0 +1,139 @@
+<!-- chat.html - Simple version with proper radio button handling -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }} Chat</title>
+    
+    <!-- Link to CSS files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <style>
+        /* Basic styles to ensure radio buttons work properly */
+        input[type="radio"] {
+            -webkit-appearance: radio;
+            -moz-appearance: radio;
+            appearance: radio;
+            margin-right: 8px;
+        }
+        
+        /* Make sure radio buttons are visible */
+        input[type="radio"] {
+            opacity: 1 !important;
+            position: static !important;
+        }
+        
+        /* Style the revision questions */
+        .revision-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .option {
+            margin: 8px 0;
+        }
+        
+        .option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .answer, .incorrect-answer {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        
+        .answer {
+            display: none;
+            background-color: #e8f5e9;
+            border: 1px solid #a5d6a7;
+        }
+        
+        .incorrect-answer {
+            display: none;
+            background-color: #ffebee;
+            border: 1px solid #ef9a9a;
+        }
+    </style>
+</head>
+<body>
+    <input type="hidden" id="course-id" value="{{ course.id }}">
+    
+    <div class="container">
+        <div class="header">
+            <h1>{{ course.title }} Tutor</h1>
+            <a href="{{ url_for('courses_page') }}" class="back-link">← Back to Courses</a>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-main">
+                <div id="chat-container" class="chat-messages">
+                    <!-- Chat messages will be displayed here -->
+                    {% for message in chat_history %}
+                        <div class="message {% if message.role == 'user' %}user-message{% else %}ai-message{% endif %}">
+                            <div class="message-content">{{ message.content }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <form id="chat-form" class="chat-input">
+                    <input type="text" id="user-input" placeholder="Ask a question..." autocomplete="off">
+                    <button type="submit" class="send-button">→</button>
+                </form>
+            </div>
+            
+            <div class="chat-sidebar">
+                <div class="stats">
+                    <h3>Learning Statistics</h3>
+                    <p>Questions asked: <span id="question-count">{{ question_count }}</span></p>
+                    <p>Next revision at: Question <span id="next-revision">{{ next_revision_at }}</span></p>
+                </div>
+                
+                <div class="actions">
+                    <button id="clear-chat" class="btn">Clear Chat</button>
+                    <button id="generate-revision" class="btn">Generate Revision</button>
+                </div>
+                
+                <div id="revision-section" class="revision-section" {% if not revision_questions %}style="display: none;"{% endif %}>
+                    <div id="revision-questions-container">
+                        {% if revision_questions %}
+                            <h3>Revision Questions</h3>
+                            {% for question in revision_questions %}
+                                <div class="revision-question" id="question-{{ loop.index0 }}">
+                                    <div class="question-text">{{ loop.index }}. {{ question.question }}</div>
+                                    <div class="options">
+                                        {% for key, value in question.options.items() %}
+                                            <div class="option">
+                                                <label>
+                                                    <!-- Simple radio buttons - JS will set the name attributes correctly -->
+                                                    <input type="radio" value="{{ key }}" data-correct="{{ 'true' if key == question.correct else 'false' }}">
+                                                    {{ key }}) {{ value }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                    <div class="answer" style="display:none;">
+                                        Correct answer: {{ question.correct }}
+                                    </div>
+                                    <div class="incorrect-answer" style="display:none;">
+                                        Incorrect! Please try again.
+                                    </div>
+                                    <button class="check-answer" data-index="{{ loop.index0 }}">Check Answer</button>
+                                    <button class="try-again" data-index="{{ loop.index0 }}" style="display:none;">Try Again</button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

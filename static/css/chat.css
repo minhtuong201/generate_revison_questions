@@ -1,0 +1,905 @@
+/* Base styles from original chat.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.header h1 {
+    margin: 0;
+    color: #333;
+}
+.back-link {
+    text-decoration: none;
+    color: #0066cc;
+}
+.chat-container {
+    display: flex;
+    gap: 20px;
+}
+.chat-main {
+    flex: 2;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.chat-sidebar {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+}
+.chat-messages {
+    height: 500px;
+    overflow-y: auto;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    scroll-behavior: smooth;
+}
+.message {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border-radius: 18px;
+    max-width: 85%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation for messages */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* User message - Changed to blue */
+.user-message {
+    background-color: #1e88e5 !important;  /* Material blue */
+    color: white !important;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+}
+
+/* AI message styling */
+.ai-message {
+    background-color: #f1f0f0;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+}
+
+.message-content {
+    line-height: 1.4;
+}
+.chat-input {
+    padding: 15px;
+    display: flex;
+}
+#user-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 16px;
+}
+
+#user-input:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.send-button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.send-button:hover {
+    background-color: #005bb5;
+    transform: scale(1.05);
+}
+
+.send-button:active {
+    transform: scale(0.95);
+}
+
+.revision-section {
+    margin-top: 20px;
+    padding: 15px;
+}
+
+/* Improved revision question styling */
+.revision-question {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 3px solid #0066cc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.revision-question:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.question-text {
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.options {
+    margin-bottom: 15px;
+}
+
+.option {
+    margin-bottom: 8px;
+    transition: background-color 0.2s;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+.option input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* Correct answer styling - more noticeable */
+.answer {
+    color: #2e7d32;  /* Material green */
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    border-left: 3px solid #2e7d32;
+}
+
+/* Incorrect answer styling */
+.incorrect-answer {
+    color: #e53935;  /* Material red */
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #ffebee;
+    border-radius: 4px;
+    border-left: 3px solid #e53935;
+    display: none;  /* Hidden by default */
+}
+
+/* Try again button */
+.try-again {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
+    display: none;  /* Hidden by default */
+}
+
+.try-again:hover {
+    background-color: #c62828;
+    transform: translateY(-1px);
+}
+
+.check-answer {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
+}
+
+.check-answer:hover {
+    background-color: #005bb5;
+    transform: translateY(-1px);
+}
+
+.stats {
+    margin-bottom: 20px;
+}
+.actions {
+    margin-top: 20px;
+}
+.btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: #005bb5;
+    transform: translateY(-1px);
+}
+
+.btn:active, .check-answer:active {
+    transform: translateY(1px);
+}
+
+/* Loading animations */
+.loading-dots span {
+    animation: dots 1.5s infinite;
+    animation-fill-mode: both;
+}
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+@keyframes dots {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Cursor animation for typing effect */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: #333;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+
+/* Enhanced code blocks for better readability */
+pre {
+    background-color: #263238;  /* Material dark blue-gray */
+    color: #eeffff;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 12px 0;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+code {
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Math expression styling */
+.math {
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'Cambria Math', 'STIX Two Math', serif;
+    line-height: 1.5;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Tables for better data presentation */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Lists in AI responses */
+ul, ol {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+ul li, ol li {
+    margin-bottom: 6px;
+}
+
+/* For syntax highlighting in code blocks */
+.keyword { color: #c792ea; }
+.string { color: #c3e88d; }
+.comment { color: #546e7a; font-style: italic; }
+.number { color: #f78c6c; }
+.function { color: #82aaff; }
+
+/* Error message styling */
+.error {
+    color: #e74c3c;
+    background-color: #fceae9;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 5px 0;
+    border-left: 3px solid #e74c3c;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+    }
+    
+    .chat-main, .chat-sidebar {
+        width: 100%;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: #333;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.7em; }
+  h3 { font-size: 1.5em; }
+  
+  /* Math styles */
+  .math-display {
+    display: block;
+    margin: 1em 0;
+    text-align: center;
+  }
+  
+  .math-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.2em;
+  }
+  
+  /* Improved spacing */
+  p { margin: 0.8em 0; }
+  .message-content { line-height: 1.5; }
+
+/* Enhanced styling for math and text integration */
+
+/* Base math styles for better integration with text */
+.math-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+    line-height: 1;
+}
+
+.math-display {
+    display: block;
+    margin: 0.5em 0;
+    text-align: center;
+    overflow-x: auto;
+}
+
+/* Numbered list formatting - control spacing */
+.message-content ol {
+    margin: 0.5em 0;
+    padding-left: 2em;
+}
+
+.message-content ol li {
+    margin-bottom: 0.4em;
+    padding-left: 0.2em;
+}
+
+/* MathJax-specific styling improvements */
+.mjx-chtml {
+    display: inline-block !important;
+    line-height: 0;
+    text-indent: 0;
+    text-align: left;
+    vertical-align: middle !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Math symbols */
+.mjx-math {
+    font-size: 1.05em !important; /* Slightly larger for better readability */
+    line-height: 0 !important; /* Better vertical alignment */
+}
+
+/* Fix spacing in paragraphs containing math */
+.message-content p {
+    margin: 0.6em 0;
+    line-height: 1.5;
+}
+
+/* Ensure consistent spacing around parentheses */
+.message-content {
+    word-spacing: normal;
+    letter-spacing: normal;
+}
+
+/* Math expressions in MathJax */
+mjx-container {
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: middle !important;
+}
+
+/* Math characters */
+mjx-container mjx-math {
+    line-height: 1 !important;
+}
+
+/* Optimize for specific math elements */
+mjx-container[jax="CHTML"] {
+    line-height: 0;
+}
+
+/* Italic variables in math */
+mjx-mi {
+    font-style: italic !important;
+}
+
+/* Fix spacing around operators */
+mjx-mo {
+    margin: 0 0.05em !important;
+}
+
+/* Tables look better with proper spacing */
+.message-content table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.message-content th, .message-content td {
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Code formatting with math */
+.message-content code {
+    background-color: #f5f5f5;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Enhanced styles for mathematical content in AI responses */
+
+/* Base container for math content */
+.math-content-container {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Headings */
+  .heading-1, h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    color: #1e3a8a;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.3em;
+  }
+  
+  .heading-2, h2 {
+    font-size: 1.75em;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    color: #1e3a8a;
+  }
+  
+  .heading-3, h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    color: #1e3a8a;
+  }
+  
+  .heading-4, h4 {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    color: #1e3a8a;
+  }
+  
+  /* Paragraphs with improved spacing */
+  .ai-message p {
+    margin: 0.8em 0;
+    line-height: 1.6;
+  }
+  
+  /* Math equation formatting */
+  .math-display {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0.5em 0;
+    margin: 1em 0;
+    text-align: center;
+  }
+  
+  .math-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.1em;
+    padding: 0;
+    font-style: italic;
+    line-height: 1;
+  }
+  
+  /* Fix for MathJax SVG */
+  .mjx-container {
+    display: inline-block;
+    line-height: 0;
+    text-indent: 0;
+    text-align: center;
+    width: auto !important;
+  }
+  
+  .mjx-container.MathJax[display="true"] {
+    display: block;
+    margin: 1em 0;
+  }
+  
+  .mjx-container.MathJax[display="true"] > .MathJax-Display > .MathJax {
+    border-color: transparent;
+  }
+  
+  /* List formatting */
+  .ai-message ul, .ai-message ol {
+    margin: 0.8em 0 0.8em 2em;
+    padding: 0;
+  }
+  
+  .ai-message ul li, .ai-message ol li {
+    margin-bottom: 0.5em;
+  }
+  
+  .ai-message ul {
+    list-style-type: disc;
+  }
+  
+  .ai-message ol {
+    list-style-type: decimal;
+  }
+  
+  /* Nested lists */
+  .ai-message ul ul, .ai-message ol ul {
+    list-style-type: circle;
+    margin-top: 0.5em;
+  }
+  
+  .ai-message ul ol, .ai-message ol ol {
+    list-style-type: lower-alpha;
+    margin-top: 0.5em;
+  }
+  
+  /* Code formatting */
+  .ai-message code.inline-code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  
+  .ai-message pre.code-block {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1em 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+  
+  /* Bold and italics */
+  .ai-message strong {
+    font-weight: bold;
+    color: inherit;
+  }
+  
+  .ai-message em {
+    font-style: italic;
+  }
+  
+  /* Definition terms */
+  .ai-message dt {
+    font-weight: bold;
+    margin-top: 0.5em;
+  }
+  
+  .ai-message dd {
+    margin-left: 2em;
+    margin-bottom: 0.5em;
+  }
+  
+  /* Tables */
+  .ai-message table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    overflow-x: auto;
+    display: block;
+  }
+  
+  .ai-message th, .ai-message td {
+    border: 1px solid #ddd;
+    padding: 0.5em;
+    text-align: left;
+  }
+  
+  .ai-message th {
+    background-color: #f8fafc;
+    font-weight: bold;
+  }
+  
+  .ai-message tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  
+  /* Formula sections */
+  .formula-section {
+    background-color: #f8fafc;
+    border-left: 3px solid #3b82f6;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .formula-section .formula-title {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #1e3a8a;
+  }
+  
+  /* Variable definitions */
+  .variable-definition {
+    display: flex;
+    margin: 0.3em 0;
+    align-items: baseline;
+  }
+  
+  .variable-symbol {
+    font-weight: bold;
+    min-width: 2em;
+    margin-right: 0.5em;
+  }
+  
+  /* Properties list */
+  .properties-list {
+    counter-reset: property;
+  }
+  
+  .property-item {
+    counter-increment: property;
+    margin-bottom: 1em;
+    position: relative;
+  }
+  
+  .property-item::before {
+    content: counter(property) ".";
+    font-weight: bold;
+    position: absolute;
+    left: -1.5em;
+  }
+  
+  .property-name {
+    font-weight: bold;
+    color: #1e3a8a;
+  }
+  
+  /* Animation for math rendering */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .math-display, .math-inline {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Fix spacing around operators in math */
+  .mjx-math mjx-mo {
+    margin: 0 0.15em !important;
+  }
+  
+  /* Improved math integration with text */
+  .ai-message .message-content .math-inline mjx-container {
+    vertical-align: middle !important;
+  }
+  
+  /* Prevent overlap with other elements */
+  .ai-message .message-content mjx-container[jax="CHTML"][display="true"] {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+/* Điều chỉnh container chính để dài hơn */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 90vh; /* Chiều cao bằng 90% viewport height */
+}
+
+/* Điều chỉnh layout chính */
+.chat-container {
+  display: flex;
+  height: calc(90vh - 100px); /* Chiều cao tính từ container trừ đi header */
+  gap: 20px;
+}
+
+/* Điều chỉnh phần chat chính */
+.chat-main {
+  flex: 3; /* Tăng tỷ lệ cho phần chat */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Phần hiển thị tin nhắn có thể cuộn */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+/* Điều chỉnh sidebar */
+.chat-sidebar {
+  flex: 2; /* Tăng tỷ lệ cho sidebar */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Style cho revision section */
+.revision-section {
+  flex: 1;
+  overflow-y: auto; /* Cho phép cuộn */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #f9f9f9;
+  max-height: calc(100% - 200px); /* Giới hạn chiều cao */
+}
+
+/* Làm cho phần revision questions có thể cuộn */
+#revision-questions-container {
+  overflow-y: auto;
+  max-height: 100%;
+  padding-right: 5px;
+}
+
+/* Thêm một chút margin và padding cho các phần */
+.stats, .actions {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+}
+
+/* Đảm bảo form input luôn ở dưới cùng */
+.chat-input {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #e0e0e0;
+  background-color: white;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Style cho nút */
+.btn, .send-button, .check-answer, .try-again {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4285f4;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover, .send-button:hover, .check-answer:hover, .try-again:hover {
+  background-color: #3367d6;
+}
+
+/* Điều chỉnh scrollbar để dễ nhìn hơn */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}

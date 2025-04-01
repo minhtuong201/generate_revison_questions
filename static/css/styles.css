@@ -1,0 +1,513 @@
+/* General Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* App Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #e1e4e8;
+    margin-bottom: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.back-button {
+    color: #4a6fa5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.logout-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}
+
+/* Login Component Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-form-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form-card h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a6fa5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #3a5a80;
+}
+
+.login-info {
+    margin-top: 20px;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Course Selection Styles */
+.course-selection-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.course-selection-container h1 {
+    color: #2c3e50;
+}
+
+.course-selection-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.course-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.course-card h3 {
+    margin-bottom: 12px;
+    color: #2c3e50;
+}
+
+.course-card p {
+    color: #7f8c8d;
+    margin-bottom: 16px;
+}
+
+.select-button {
+    background-color: #4a6fa5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.select-button:hover {
+    background-color: #3a5a80;
+}
+
+/* Chat Interface Styles */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.chat-content {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+    height: calc(100vh - 260px);
+    margin-bottom: 20px;
+}
+
+.chat-messages {
+    flex: 2;
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.empty-chat-message {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #95a5a6;
+    font-style: italic;
+}
+
+.message {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.user-message {
+    background-color: #4a6fa5;
+    color: white;
+    margin-left: auto;
+}
+
+.ai-message {
+    background-color: #f5f7fa;
+    color: #2c3e50;
+}
+
+.chat-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.revision-button, .clear-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.revision-button {
+    background-color: #4a6fa5;
+    color: white;
+}
+
+.revision-button:hover:not(:disabled) {
+    background-color: #3a5a80;
+}
+
+.clear-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.clear-button:hover:not(:disabled) {
+    background-color: #c0392b;
+}
+
+.revision-button:disabled, .clear-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.chat-input-container {
+    margin-bottom: 16px;
+}
+
+.chat-input-container form {
+    display: flex;
+    gap: 12px;
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.send-button {
+    padding: 12px 24px;
+    background-color: #4a6fa5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-button:hover {
+    background-color: #3a5a80;
+}
+
+.chat-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Add improved styling for mathematical content and Markdown paragraphs */
+.message-content {
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.message-content p {
+    margin: 1em 0;
+}
+
+.message-content h1,
+.message-content h2,
+.message-content h3,
+.message-content h4,
+.message-content h5,
+.message-content h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.message-content h1 { font-size: 2em; }
+.message-content h2 { font-size: 1.8em; }
+.message-content h3 { font-size: 1.5em; }
+.message-content h4 { font-size: 1.3em; }
+.message-content h5 { font-size: 1.2em; }
+.message-content h6 { font-size: 1.1em; }
+
+/* Make sure code blocks and math display properly */
+.message-content pre {
+    background-color: #f5f7fa;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.message-content code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5f7fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Ensure proper paragraph breaks */
+.message-content p + p {
+    margin-top: 1em;
+}
+
+/* Improved styling for mathematical content */
+.math-inline, .math-display {
+    font-family: 'STIX Two Math', 'Cambria Math', serif;
+}
+
+.math-display {
+    display: block;
+    margin: 1em auto;
+    text-align: center;
+    overflow-x: auto;
+    padding: 0.5em 0;
+}
+
+.math-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.2em;
+}
+
+/* Revision Panel Styles */
+.revision-panel {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-y: auto;
+    flex-basis: 300px;
+    flex-shrink: 0;
+    border: 1px solid #e1e4e8;
+}
+
+.revision-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.revision-header h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.revision-count {
+    background-color: #4a6fa5;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.revision-questions-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.revision-question-item {
+    background-color: white;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-left: 3px solid #4a6fa5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Multiple Choice Question Styles */
+.mcq-question {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.mcq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mcq-option {
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #f5f7fa;
+    transition: background-color 0.2s;
+}
+
+.mcq-option:hover {
+    background-color: #edf2f7;
+}
+
+.option-letter {
+    font-weight: 600;
+    color: #4a6fa5;
+    margin-right: 6px;
+}
+
+.correct-answer {
+    background-color: #e8f5e9;
+    border-left: 3px solid #4caf50;
+}
+
+.correct-indicator {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.generating-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #4a6fa5;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .chat-content {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .chat-messages {
+        height: 50vh;
+    }
+    
+    .revision-panel {
+        height: 30vh;
+        margin-top: 16px;
+    }
+}
