@@ -1,81 +1,96 @@
-# AI-Powered Learning Web App with OpenAI GPT-4o mini
+# AI Tutor Chat App with Revision Generator
 
-This is a Flask-based learning web application that offers a chatbot-based tutoring experience for students. The application uses OpenAI's GPT-4o mini model to generate AI responses and revision questions based on user interactions.
+An interactive AI-powered chatbot that helps students learn through conversation and auto-generates revision questions. Built with **Flask**, **OpenAI**, and **Langchain**, the app supports multiple courses, dynamic Q&A, and smart revision prompts.
 
-## Features
+---
 
-- **User Authentication**: Simple login system (simulated)
-- **Course Selection**: Choose from available courses
-- **AI Chat Interface**: Chat with an AI tutor powered by GPT-4o mini
-- **Revision Questions**: Automatically generates revision questions using GPT-4o mini
-- **Chat History**: Stores only user questions (not AI responses)
-- **Clear Function**: Reset chat within the same course
+## 🚀 Features
 
-## Setup
+- 🔐 Simple login system with session-based authentication
+- 🎓 Select from multiple courses (Math, CS, Art, etc.)
+- 💬 Real-time chat interface using OpenAI streaming responses
+- 📚 Automatically generates multiple-choice revision questions after every few interactions
+- 🧠 Uses Langchain and OpenAI for smart, course-specific tutoring
+- 🧪 Revision questions can be manually triggered
+- 🔄 FIFO chat history (auto-removes oldest messages after 5 questions)
+- 🛡️ Rejects irrelevant messages (disabled by default with low similarity threshold)
 
-### Prerequisites
+---
 
-- Python 3.8+ installed
-- OpenAI API key
+## 📂 Project Structure
 
-### Configuration
+```
+├── app.py                  # Main Flask app
+├── requirements.txt        # Dependencies
+├── Procfile                # For deployment (e.g., Render)
+├── .gitignore              # Files to exclude from Git
+├── templates/              # HTML templates
+├── static/                 # CSS, JS, assets
+│   └── js/chat.js          # Streaming chat logic
+└── .env                    # Environment variables (NOT included in repo)
+```
 
-1. Update the `.env` file with your OpenAI API key:
-   ```
-   OPENAI_API_KEY=your_api_key_here
-   ```
+---
 
-2. (Optional) Adjust other parameters in the `.env` file:
-   ```
-   MODEL_NAME=gpt-4o-mini  # or another OpenAI model
-   REVISION_QUESTIONS_N=10  # Generate after every N questions
-   REVISION_QUESTIONS_O=3   # Overlap factor
-   MAX_REVISION_QUESTIONS=20  # Maximum revision questions limit
-   ```
+## 🛠️ Setup Instructions
 
-### Installation
+### 1. Clone & Setup
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
+python -m venv venv
+source venv/bin/activate   # On Windows use: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-1. Install required packages:
-   ```
-   pip install -r requirements.txt
-   ```
+### 2. Create `.env`
+Create a `.env` file in the root with your OpenAI key and settings:
 
-2. Run the application:
-   ```
-   python app.py
-   ```
+```env
+OPENAI_API_KEY=your-openai-key
+MODEL_NAME=gpt-4o-mini
+FLASK_SECRET_KEY=your-secret-key
+DEBUG=True
+REVISION_QUESTIONS_N=5
+REVISION_QUESTIONS_O=2
+MAX_REVISION_QUESTIONS=10
+MAX_ADDED_QUESTIONS=2
+RELEVANCE_THRESHOLD=-10
+```
 
-3. Access the application at [http://127.0.0.1:5000](http://127.0.0.1:5000)
+---
 
-## Usage
+## 🧪 Run Locally
 
-1. Log in with any username and password (authentication is simulated for demo purposes)
-2. Select a course from the available options
-3. Start chatting with the AI tutor powered by GPT-4o mini
-4. Revision questions will be generated automatically after every N questions (configurable)
-5. Click the "Generate Revision" button to manually generate revision questions
-6. Use the "Clear Chat" button to reset the conversation
+```bash
+python app.py
+```
 
-## Architecture
+Open your browser to `http://localhost:5000`.
 
-- **Flask Backend**: Handles authentication, routing, and API calls to OpenAI
-- **OpenAI Integration**: Uses GPT-4o mini for generating:
-  - AI tutor responses tailored to each course
-  - Revision questions based on user's chat history
-- **Responsive Frontend**: Modern UI with separate views for login, course selection, and chat
+---
 
-## Revision Question Logic
+## ☁️ Deploy on Render
 
-The system generates revision questions:
-- After every N questions (default: 10)
-- With an overlap factor O (default: 3)
-- Maximum of MAX_REVISION_QUESTIONS (default: 20)
-- Using OpenAI to analyze previous user questions and create relevant revision topics
+1. Push this repo to GitHub
+2. Go to [Render](https://render.com)
+3. Create a new Web Service
+4. Use:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `gunicorn app:app`
 
-## Future Enhancements
+5. Add your `.env` values in the **Environment Variables** section
 
-- Database integration for persistent storage
-- User registration and profile management
-- Custom course content and materials
-- Expanded analytics on student learning progress
-- Fine-tuned models for specific educational domains
+---
+
+## ✍️ Credits
+
+- Built with [Flask](https://flask.palletsprojects.com/)
+- Powered by [OpenAI API](https://platform.openai.com/)
+- Utilizes [Langchain](https://www.langchain.com/)
+
+---
+
+## 📜 License
+
+This project is for educational/demo purposes. Replace `demo` logic (e.g., hardcoded users) before using in production.
